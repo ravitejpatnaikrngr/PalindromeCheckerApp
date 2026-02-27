@@ -1,35 +1,28 @@
-import java.util.Stack;
-import java.util.Queue;
-import java.util.LinkedList;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class PalindromeCheckerApp {
     private static final String APP_NAME = "Palindrome Checker App";
     private static final String VERSION = "1.0";
     public static void main(String[] args) {
-                String word = "level";  // You can modify this
-                System.out.println("=================================");
-                System.out.println("Palindrome Checker App - UC6");
-                System.out.println("=================================");
+                String word = "racecar";
+                System.out.println("Palindrome Checker App - UC7");
                 System.out.println("Original String: " + word);
-                Stack<Character> stack = new Stack<>();
-                Queue<Character> queue = new LinkedList<>();
+                Deque<Character> deque = new ArrayDeque<>();
                 for (int i = 0; i < word.length(); i++) {
-                    char ch = word.charAt(i);
-                    stack.push(ch);
-                    queue.add(ch);
+                    deque.addLast(word.charAt(i));
                 }
                 boolean isPalindrome = true;
-
-                while (!stack.isEmpty()) {
-
-                    char fromStack = stack.pop();
-                    char fromQueue = queue.remove();
-
-                    if (fromStack != fromQueue) {
+                while (deque.size() > 1) {
+                    char front = deque.removeFirst();
+                    char rear = deque.removeLast();
+                    if (front != rear) {
                         isPalindrome = false;
                         break;
                     }
                 }
+
                 if (isPalindrome) {
                     System.out.println("Result: The given string is a Palindrome.");
                 } else {
@@ -39,6 +32,7 @@ public class PalindromeCheckerApp {
                 System.out.println("Program execution completed.");
             }
         }
+
 
 
 
